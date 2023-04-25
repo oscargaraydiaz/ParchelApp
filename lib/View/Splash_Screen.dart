@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parchelapp/Styles/app_colors.dart';
 import 'package:parchelapp/View/Login_Screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: colorTwo,
         body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +39,6 @@ class _SplashScreenState extends State<SplashScreen> {
                   SizedBox(
                     height: 20,
                   ),
-
                 ],
               ),
             ));
