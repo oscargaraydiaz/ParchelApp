@@ -30,11 +30,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget loginBody() {
     return GestureDetector(
+      onTap: (){
+
+      },
       child: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             Center(
               child: Padding(
@@ -60,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Text(
                 'ParchelApp',
                 style:
-                    GoogleFonts.justAnotherHand(color: colorOne, fontSize: 70),
+                    GoogleFonts.justAnotherHand(color: colorOne, fontSize: 60),
               ),
             ),
             const SizedBox(
@@ -82,9 +85,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text("Iniciar Sesión",
                       style: GoogleFonts.rambla(
-                          color: Colors.red,
+                          color: Colors.white70,
                           fontWeight: FontWeight.bold,
-                          fontSize: 35)),
+                          fontSize: 25)),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: TextFormField(
@@ -176,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
-                          minimumSize: const Size(135, 55),
+                          minimumSize: const Size(124, 55),
                         ),
                         child: Row(
                           children: [
@@ -197,14 +200,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(
-                        width: 15,
+                        width: 12,
                       ),
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
                               const Color.fromRGBO(65, 103, 178, 3),
-                          minimumSize: const Size(135, 55),
+                          minimumSize: const Size(124, 55),
                         ),
                         child: Row(
                           children: [
