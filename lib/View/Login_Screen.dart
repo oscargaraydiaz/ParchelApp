@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parchelapp/Styles/app_colors.dart';
+import 'package:parchelapp/Styles/button_style.dart';
+
+import '../Styles/input_decoration.dart';
+import 'SignUp_Screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -97,18 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       textInputAction: TextInputAction.next,
                       cursorColor: Colors.white,
                       style: const TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                          focusedBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Colors.white,
-                                  style: BorderStyle.solid)),
-                          enabledBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Colors.white,
-                                  style: BorderStyle.solid)),
-                          labelText: 'Correo',
-                          labelStyle: GoogleFonts.rambla(
-                              color: Colors.red, fontSize: 20)),
+                      decoration: inputDecoration('Correo'),
                     ),
                   ),
                   Padding(
@@ -147,12 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: colorOne,
-                        minimumSize: const Size(400, 50),
-                        shadowColor: Colors.orange,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15))),
+                    style: buttonStyle(),
                     child: Text(
                       'Ingresar',
                       style:
@@ -210,7 +198,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              //rgb(59, 89, 152)
                               const Color.fromRGBO(59, 89, 152, 3),
                           minimumSize: const Size(124, 55),
                         ),
@@ -248,7 +235,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 5,
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const SignUpScreen()), (route) => false);
+                        },
                         child: Text('Regístrate',
                           style: GoogleFonts.asap(color: colorOne, fontSize: 19, decoration: TextDecoration.underline),),
                       )
