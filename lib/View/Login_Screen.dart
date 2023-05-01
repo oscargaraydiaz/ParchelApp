@@ -30,8 +30,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget loginBody() {
     return GestureDetector(
-      onTap: (){
-
+      onTap: () {
+        final FocusScopeNode focus = FocusScope.of(context);
+        if (!focus.hasPrimaryFocus && focus.hasFocus) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
       },
       child: SingleChildScrollView(
         child: Column(
@@ -91,6 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: TextFormField(
+                      textInputAction: TextInputAction.next,
                       cursorColor: Colors.white,
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
@@ -173,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       ElevatedButton(
                         onPressed: () {},
@@ -200,13 +204,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(
-                        width: 12,
+                        width: 15,
                       ),
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              const Color.fromRGBO(65, 103, 178, 3),
+                              //rgb(59, 89, 152)
+                              const Color.fromRGBO(59, 89, 152, 3),
                           minimumSize: const Size(124, 55),
                         ),
                         child: Row(
@@ -214,7 +219,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             const Image(
                               image: AssetImage('assets/face.png'),
                               width: 35,
-                              height: 30,
+                              height: 40,
+                            ),
+                            const SizedBox(
+                              width: 5,
                             ),
                             Text(
                               'Facebook',
