@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorTwo,
+      backgroundColor: colorThree,
       body: loginBody(),
     );
   }
@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.bold),
                   )),
                   const SizedBox(
-                    height: 30,
+                    height: 25,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -234,20 +234,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 25,
+                    height: 40,
                   ),
-                  Center(
-                    child: Text(
-                      '¿No tienes una cuenta?',
-                      style: GoogleFonts.asap(color: colorOne, fontSize: 19),
-                    ),
-                  ),
-                  Center(
-                    child: TextButton(
-                      onPressed: (){},
-                      child: Text('Regístrate',
-                        style: GoogleFonts.asap(color: colorOne, fontSize: 19, decoration: TextDecoration.underline),),
-                    ),
+                  Column(
+                    children: [
+                      Center(
+                        child: Text(
+                          '¿No tienes una cuenta?',
+                          style: GoogleFonts.asap(color: colorOne, fontSize: 19),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Text('Regístrate',
+                          style: GoogleFonts.asap(color: colorOne, fontSize: 19, decoration: TextDecoration.underline),),
+                      )
+                    ],
                   )
                 ],
               ),

@@ -18,11 +18,10 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _closeSplash(context) async {
-    Future.delayed(const Duration(seconds: 6), () async {
-      Navigator.pushAndRemoveUntil(
+    Future.delayed(const Duration(seconds: 6), () {
+      Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const LoginScreen()),
-              (route) => false
       );
   });
   }
@@ -37,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 children: [
                   Image(image: AssetImage('assets/gif_splash.gif')),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                 ],
               ),
