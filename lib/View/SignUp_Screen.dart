@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parchelapp/Styles/app_colors.dart';
-import 'package:parchelapp/Styles/button_style.dart';
-
-import '../Styles/input_decoration.dart';
+import 'Styles/app_colors.dart';
+import 'Styles/button_style.dart';
+import 'Styles/input_decoration.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -29,9 +28,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       MaterialState.focused,
     };
     if (states.any(interactiveStates.contains)) {
-      return colorOne;
+      return Colors.red;
     }
-    return colorOne;
+    return Colors.red;
   }
 
 
@@ -119,42 +118,64 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Checkbox(
-                        fillColor: MaterialStateProperty.resolveWith(getColor),
-                          value: _isChecked,
-                          onChanged: (value){
-                            _isChecked = !_isChecked;
-                            setState(() {
-                            });
-                      }),
+                      SizedBox(
+                        height: 30,
+                        width: 50,
+                        child: Checkbox(
+                          fillColor: MaterialStateProperty.resolveWith(getColor),
+                            value: _isChecked,
+                            onChanged: (value){
+                              _isChecked = !_isChecked;
+                              setState(() {
+                              });
+                        }),
+                      ),
                         SizedBox(
                           height: 50,
                           width: 240,
-                          child: InkWell(
+                          child: GestureDetector(
                             onTap: (){},
                             child: RichText(
                                 text: TextSpan(
                                   text: 'He leído y acepto los ',
                                   style: GoogleFonts.rambla(
-                                    fontSize: 16, color: Colors.black
+                                      shadows: [
+                                        const BoxShadow(
+                                            color: Colors.black, spreadRadius: 0.0, blurRadius: 10)
+                                      ],
+                                    fontSize: 14, color: Colors.white
                                   ),
                                   children: [
                                     TextSpan(
                                       text: 'Términos de Servicio',
                                       style: GoogleFonts.rambla(
-                                        fontSize: 14, color: colorOne,
+                                        shadows: [
+                                          const BoxShadow(
+                                              color: Colors.black, spreadRadius: 0.0, blurRadius: 10)
+                                        ],
+                                        fontSize: 14, color: Colors.red,
+                                          decoration: TextDecoration.underline
                                       ),
                                     ),
                                     TextSpan(
                                       text: ' y ',
                                       style: GoogleFonts.rambla(
-                                        fontSize: 16, color: Colors.black
+                                          shadows: [
+                                            const BoxShadow(
+                                                color: Colors.black, spreadRadius: 0.0, blurRadius: 10)
+                                          ],
+                                        fontSize: 14, color: Colors.white
                                       ),
                                     ),
                                     TextSpan(
                                       text: 'Políticas de Privacidad',
                                       style: GoogleFonts.rambla(
-                                        fontSize: 14, color: colorOne,
+                                        shadows: [
+                                          const BoxShadow(
+                                              color: Colors.black, spreadRadius: 0.0, blurRadius: 10)
+                                        ],
+                                        fontSize: 14, color: Colors.red,
+                                          decoration: TextDecoration.underline
                                       ),
                                     )
                                   ]

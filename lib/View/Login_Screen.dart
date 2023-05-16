@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parchelapp/Styles/app_colors.dart';
-import 'package:parchelapp/Styles/button_style.dart';
-
-import '../Styles/input_decoration.dart';
+import 'Main_Screen.dart';
 import 'SignUp_Screen.dart';
+import 'Styles/app_colors.dart';
+import 'Styles/button_style.dart';
+import 'Styles/input_decoration.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -69,8 +69,10 @@ class _LoginScreenState extends State<LoginScreen> {
             Center(
               child: Text(
                 'ParchelApp',
-                style:
-                    GoogleFonts.justAnotherHand(color: colorOne, fontSize: 60),
+                style: GoogleFonts.justAnotherHand(shadows: [
+                  const BoxShadow(
+                      color: Colors.black, spreadRadius: 0.0, blurRadius: 10)
+                ], color: colorOne, fontSize: 60),
               ),
             ),
             const SizedBox(
@@ -92,6 +94,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text("Iniciar Sesión",
                       style: GoogleFonts.rambla(
+                          shadows: [
+                            const BoxShadow(
+                                color: Colors.black,
+                                spreadRadius: 0.0,
+                                blurRadius: 10)
+                          ],
                           color: Colors.white70,
                           fontWeight: FontWeight.bold,
                           fontSize: 25)),
@@ -139,12 +147,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 15,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          PageRouteBuilder(
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              reverseTransitionDuration:
+                                  const Duration(milliseconds: 300),
+                              pageBuilder: (context, animation, _) {
+                                return FadeTransition(
+                                  opacity: animation,
+                                  child: const MainScreen(),
+                                );
+                              }), (route) => false,);
+                    },
                     style: buttonStyle(),
                     child: Text(
                       'Ingresar',
-                      style:
-                          GoogleFonts.rambla(color: Colors.white, fontSize: 25),
+                      style: GoogleFonts.rambla(shadows: [
+                        const BoxShadow(
+                            color: Colors.black,
+                            spreadRadius: 0.0,
+                            blurRadius: 10)
+                      ], color: Colors.white, fontSize: 25),
                     ),
                   ),
                   const SizedBox(
@@ -154,6 +180,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                     'O registrate con tus redes sociales',
                     style: GoogleFonts.asap(
+                        shadows: [
+                          const BoxShadow(
+                              color: Colors.black,
+                              spreadRadius: 0.0,
+                              blurRadius: 10)
+                        ],
                         color: colorOne,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
@@ -185,8 +217,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             Text(
                               'Google',
-                              style: GoogleFonts.asap(
-                                  color: Colors.black, fontSize: 15),
+                              style: GoogleFonts.asap(shadows: [
+                                const BoxShadow(
+                                    color: Colors.grey,
+                                    spreadRadius: 0.0,
+                                    blurRadius: 10)
+                              ], color: Colors.black, fontSize: 15),
                             )
                           ],
                         ),
@@ -197,8 +233,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(59, 89, 152, 3),
+                          backgroundColor: const Color.fromRGBO(59, 89, 152, 3),
                           minimumSize: const Size(124, 55),
                         ),
                         child: Row(
@@ -213,7 +248,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             Text(
                               'Facebook',
-                              style: GoogleFonts.asap(fontSize: 15),
+                              style: GoogleFonts.asap(shadows: [
+                                const BoxShadow(
+                                    color: Colors.black,
+                                    spreadRadius: 0.0,
+                                    blurRadius: 10)
+                              ], fontSize: 15),
                             ),
                           ],
                         ),
@@ -228,18 +268,46 @@ class _LoginScreenState extends State<LoginScreen> {
                       Center(
                         child: Text(
                           '¿No tienes una cuenta?',
-                          style: GoogleFonts.asap(color: colorOne, fontSize: 19),
+                          style: GoogleFonts.asap(shadows: [
+                            const BoxShadow(
+                                color: Colors.black,
+                                spreadRadius: 0.0,
+                                blurRadius: 10)
+                          ], color: colorOne, fontSize: 19),
                         ),
                       ),
                       const SizedBox(
                         width: 5,
                       ),
-                      InkWell(
-                        onTap: (){
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const SignUpScreen()), (route) => false);
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
+                                  reverseTransitionDuration:
+                                      const Duration(milliseconds: 300),
+                                  pageBuilder: (context, animation, _) {
+                                    return FadeTransition(
+                                      opacity: animation,
+                                      child: const SignUpScreen(),
+                                    );
+                                  }));
                         },
-                        child: Text('Regístrate',
-                          style: GoogleFonts.asap(color: colorOne, fontSize: 19, decoration: TextDecoration.underline),),
+                        child: Text(
+                          'Regístrate',
+                          style: GoogleFonts.asap(
+                              shadows: [
+                                const BoxShadow(
+                                    color: Colors.black,
+                                    spreadRadius: 0.0,
+                                    blurRadius: 10)
+                              ],
+                              color: colorOne,
+                              fontSize: 19,
+                              decoration: TextDecoration.underline),
+                        ),
                       )
                     ],
                   )

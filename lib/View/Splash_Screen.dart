@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:parchelapp/Styles/app_colors.dart';
 import 'package:parchelapp/View/Login_Screen.dart';
+import 'Styles/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {
 
@@ -21,7 +21,15 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 6), () {
       Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
+        PageRouteBuilder(
+            transitionDuration: const Duration(milliseconds: 500),
+            reverseTransitionDuration: const Duration(milliseconds: 500),
+            pageBuilder: (context, animation, _){
+              return FadeTransition(
+                opacity: animation,
+                child: const LoginScreen(),
+              );
+            }),
       );
   });
   }
@@ -36,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 children: [
                   Image(image: AssetImage('assets/gif_splash.gif')),
                   SizedBox(
-                    height: 10,
+                    height: 9,
                   ),
                 ],
               ),
