@@ -15,7 +15,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   void initState() {
-    
     super.initState();
     sound = true;
     music = true;
