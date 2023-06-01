@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parchelapp/View/terms&conditions_screen.dart';
 import 'Styles/app_colors.dart';
 import 'Styles/button_style.dart';
 import 'Styles/input_decoration.dart';
@@ -134,7 +135,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           height: 50,
                           width: 240,
                           child: GestureDetector(
-                            onTap: (){},
+                            onTap: (){
+                              Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                      transitionDuration:
+                                      const Duration(milliseconds: 500),
+                                      reverseTransitionDuration:
+                                      const Duration(milliseconds: 300),
+                                      pageBuilder: (context, animation, _) {
+                                        return FadeTransition(
+                                          opacity: animation,
+                                          child: const TermsConditionsScreen(),
+                                        );
+                                      }));
+                            },
                             child: RichText(
                                 text: TextSpan(
                                   text: 'He leído y acepto los ',

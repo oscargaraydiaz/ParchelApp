@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "694964356586",
+    "project_id": "parchelapp-76af7",
+    "storage_bucket": "parchelapp-76af7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694964356586:android:d96903db49948d38e31e93",
+        "android_client_info": {
+          "package_name": "co.com.parchelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694964356586-hj49ljvab95da4gimtu64075o6t2g4hv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKmPr6s509-jR-1DUBLCPcz_FUmnjkeUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694964356586-hj49ljvab95da4gimtu64075o6t2g4hv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

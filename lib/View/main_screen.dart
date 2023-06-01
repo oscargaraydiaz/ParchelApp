@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:parchelapp/View/Styles/app_colors.dart';
-import 'package:parchelapp/View/Truth_or_Dare_Screen.dart';
-import 'package:parchelapp/View/Widgets/Drawer_Menu.dart';
-
+import 'package:parchelapp/View/fun_type_screen_ToD.dart';
+import 'package:parchelapp/View/Widgets/drawer_menu.dart';
+import 'package:parchelapp/View/ridd_screen.dart';
 import 'Styles/button_style.dart';
+import 'mystery_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -80,13 +81,13 @@ class _MainScreenState extends State<MainScreen> {
                           pageBuilder: (context, animation, _) {
                             return FadeTransition(
                               opacity: animation,
-                              child: const TruthorDareScreen(),
+                              child: const FunTypeToDScreen(),
                             );
                           }));
                 },
                 style: buttonMainStyle(),
                 child: Text(
-                  'Responde o Atrévete',
+                  'Verdad o Reto',
                   style: GoogleFonts.rambla(shadows: [
                     const BoxShadow(
                         color: Colors.black, spreadRadius: 0.0, blurRadius: 10)
@@ -102,10 +103,24 @@ class _MainScreenState extends State<MainScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          transitionDuration:
+                          const Duration(milliseconds: 500),
+                          reverseTransitionDuration:
+                          const Duration(milliseconds: 300),
+                          pageBuilder: (context, animation, _) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: const RiddleScreen(),
+                            );
+                          }));
+                },
                 style: buttonMainStyle(),
                 child: Text(
-                  'Adivina',
+                  'Adivinanzas',
                   style: GoogleFonts.rambla(shadows: [
                     const BoxShadow(
                         color: Colors.black, spreadRadius: 0.0, blurRadius: 10)
@@ -143,10 +158,24 @@ class _MainScreenState extends State<MainScreen> {
                 width: 40,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          transitionDuration:
+                          const Duration(milliseconds: 500),
+                          reverseTransitionDuration:
+                          const Duration(milliseconds: 300),
+                          pageBuilder: (context, animation, _) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: const MysteryScreen(),
+                            );
+                          }));
+                },
                 style: buttonMainStyle(),
                 child: Text(
-                  '¿Quién fue?',
+                  'Misterios',
                   style: GoogleFonts.rambla(shadows: [
                     const BoxShadow(
                         color: Colors.black, spreadRadius: 0.0, blurRadius: 10)

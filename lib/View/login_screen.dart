@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'Main_Screen.dart';
-import 'SignUp_Screen.dart';
+import 'main_screen.dart';
+import 'signUp_screen.dart';
 import 'Styles/app_colors.dart';
 import 'Styles/button_style.dart';
 import 'Styles/input_decoration.dart';
@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             const SizedBox(
-              height: 15,
+              height: 10,
             ),
             Center(
               child: Text(

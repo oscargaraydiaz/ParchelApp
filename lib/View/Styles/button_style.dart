@@ -14,7 +14,7 @@ ButtonStyle buttonStyle(){
 ButtonStyle buttonMainStyle(){
   return ElevatedButton.styleFrom(
       backgroundColor: colorOne,
-      minimumSize: const Size(250, 50),
+      minimumSize: const Size(260, 50),
       shadowColor: Colors.orange,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15))

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'Styles/app_colors.dart';
 import 'Styles/button_style.dart';
-import 'Widgets/Drawer_Menu.dart';
+import 'Widgets/drawer_menu.dart';
 
-class TruthorDareScreen extends StatefulWidget {
-  const  TruthorDareScreen({Key? key}) : super(key: key);
+class FunTypeWwScreen extends StatefulWidget {
+  const  FunTypeWwScreen({Key? key}) : super(key: key);
 
   @override
-  State< TruthorDareScreen> createState() => _TruthorDareScreenState();
+  State< FunTypeWwScreen> createState() => _FunTypeWwScreenState();
 }
 
-class _TruthorDareScreenState extends State< TruthorDareScreen> {
+class _FunTypeWwScreenState extends State< FunTypeWwScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,12 +19,12 @@ class _TruthorDareScreenState extends State< TruthorDareScreen> {
       appBar: AppBar(
           backgroundColor: colorThree,
           iconTheme: const IconThemeData(color: colorOne)),
-      body: truthDareBody(),
+      body: funTypeBody(),
       drawer: drawerMenu(context),
     );
   }
 
-  truthDareBody() {
+  funTypeBody() {
     return Container(
       decoration: const BoxDecoration(color: colorThree),
       child: Column(
@@ -64,7 +64,7 @@ class _TruthorDareScreenState extends State< TruthorDareScreen> {
                     image: AssetImage("assets/family.png"),
                   )),
               const SizedBox(
-                width: 40,
+                width: 30,
               ),
               ElevatedButton(
                 onPressed: () {},
@@ -97,7 +97,7 @@ class _TruthorDareScreenState extends State< TruthorDareScreen> {
                 ),
               ),
               const SizedBox(
-                width: 40,
+                width: 30,
               ),
               Container(
                   height: 50,
@@ -124,7 +124,7 @@ class _TruthorDareScreenState extends State< TruthorDareScreen> {
                     image: AssetImage("assets/heart.png"),
                   )),
               const SizedBox(
-                width: 40,
+                width: 50,
               ),
               ElevatedButton(
                 onPressed: () {},
