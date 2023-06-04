@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parchelapp/Controller/user_controller.dart';
+import 'package:parchelapp/View/Widgets/snack_bar.dart';
+import '../Controller/validators_controller.dart';
 import 'main_screen.dart';
 import 'signUp_screen.dart';
 import 'Styles/app_colors.dart';
@@ -16,10 +19,12 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late bool _obscureText;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
 
   @override
   void initState() {
-    // TODO: implement initState
     _obscureText = true;
     super.initState();
   }
@@ -80,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Center(
               child: Text(
-                'El exceso de diversión es saludable para el alma!',
+                '¡El exceso de diversión es saludable para el alma!',
                 style: GoogleFonts.justAnotherHand(shadows: [
                   const BoxShadow(
                       color: Colors.black, spreadRadius: 0.0, blurRadius: 10)
@@ -106,6 +111,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: TextFormField(
+                      controller: emailController,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (email) {
+                        if (email == null) return null;
+                        return ValidatorController.isValidEmail(email)
+                            ? null
+                            : "¡Introduce un correo válido!";
+                      },
                       textInputAction: TextInputAction.next,
                       cursorColor: Colors.white,
                       style: const TextStyle(color: Colors.white),
@@ -115,6 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: TextFormField(
+                      controller: passController,
                       obscureText: _obscureText,
                       cursorColor: Colors.white,
                       style: const TextStyle(color: Colors.white),
@@ -148,19 +162,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushAndRemoveUntil(
+                      UserController.signIn(context, emailController.text, passController.text).then((value){
+                        snackbar(context, '¡Hola! listo para divertirte?');
+                        Navigator.pushAndRemoveUntil(
                           context,
                           PageRouteBuilder(
                               transitionDuration:
-                                  const Duration(milliseconds: 500),
+                              const Duration(milliseconds: 500),
                               reverseTransitionDuration:
-                                  const Duration(milliseconds: 300),
+                              const Duration(milliseconds: 300),
                               pageBuilder: (context, animation, _) {
                                 return FadeTransition(
                                   opacity: animation,
                                   child: const MainScreen(),
                                 );
                               }), (route) => false,);
+                      });
                     },
                     style: buttonStyle(),
                     child: Text(
@@ -200,7 +217,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 10,
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          snackbar(context, '¡Lo sentimos! Seguimos trabajando para entregarte más');
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           minimumSize: const Size(124, 55),
@@ -231,7 +250,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 15,
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          snackbar(context, '¡Lo sentimos! Seguimos trabajando para entregarte más');
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromRGBO(59, 89, 152, 3),
                           minimumSize: const Size(124, 55),

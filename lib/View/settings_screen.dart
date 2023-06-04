@@ -95,7 +95,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 const SizedBox(width: 30,),
                 Text(
-                  'Volumen Música',
+                  'Volúmen Música',
                   style: GoogleFonts.rambla(color: colorFour, fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Slider(
@@ -103,7 +103,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   min: 0.0,
                   max: 1.0,
                   onChanged: (value) {
-                    // Lógica para ajustar el volumen de la música
                   },
                 ),
               ],

@@ -15,10 +15,11 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   google_fonts:
-  firebase_core:
-  shared_preferences:
+  firebase_core: ^2.13.1
   percent_indicator:
   flutter_rating_bar:
+  cloud_firestore: ^4.8.0
+  intl:
 
 dev_dependencies:
   flutter_test:

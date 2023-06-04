@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parchelapp/Controller/user_controller.dart';
 import 'package:parchelapp/View/Styles/app_colors.dart';
 import 'package:parchelapp/View/Widgets/drawer_menu.dart';
+
+import '../Models/user_model.dart';
 
 
 class RateScreen extends StatefulWidget {
@@ -13,6 +16,10 @@ class RateScreen extends StatefulWidget {
 }
 
 class _RateScreenState extends State<RateScreen> {
+  List<User> usersList = UserController.userList;
+  int userIndex = UserController.userIndex;
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +80,7 @@ class _RateScreenState extends State<RateScreen> {
             height: 35,
           ),
       RatingBar.builder(
-        initialRating: 3,
+        initialRating: double.parse(usersList[userIndex].rate),
         minRating: 1,
         direction: Axis.horizontal,
         allowHalfRating: true,
@@ -87,7 +94,7 @@ class _RateScreenState extends State<RateScreen> {
         },
       ),
           const SizedBox(
-            height: 160,
+            height: 130,
           ),
           Center(
             child: Text(

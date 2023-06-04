@@ -1,16 +1,26 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parchelapp/Controller/challenge_controller.dart';
 import 'package:parchelapp/View/Styles/app_colors.dart';
 import 'package:parchelapp/View/Widgets/drawer_menu.dart';
+import 'Widgets/snack_bar.dart';
 
-class TruthOrDareScreen extends StatefulWidget {
-  const TruthOrDareScreen({Key? key}) : super(key: key);
-
+class FamilyScreen extends StatefulWidget {
+  const FamilyScreen({Key? key}) : super(key: key);
   @override
-  State<TruthOrDareScreen> createState() => _TruthOrDareScreenState();
+  State<FamilyScreen> createState() => _FamilyScreenState();
 }
 
-class _TruthOrDareScreenState extends State<TruthOrDareScreen> {
+class _FamilyScreenState extends State<FamilyScreen> {
+  late String currentChallenge;
+
+  @override
+  void initState() {
+    nextChallenge();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,11 +30,18 @@ class _TruthOrDareScreenState extends State<TruthOrDareScreen> {
         iconTheme: const IconThemeData(color: colorOne),
       ),
       drawer: drawerMenu(context),
-      body: _riddleBody(),
+      body: _familyBody(),
     );
   }
 
-  _riddleBody() {
+  void nextChallenge(){
+    int index = Random().nextInt(ChallengeController.familyList.length);
+    setState(() {
+      currentChallenge = ChallengeController.familyList[index].content;
+    });
+  }
+
+  _familyBody() {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Column(
@@ -53,7 +70,7 @@ class _TruthOrDareScreenState extends State<TruthOrDareScreen> {
                 children: [
                   Center(
                     child: Text(
-                      '¡Verdad o Reto!',
+                      '¡En Familia!',
                       style: GoogleFonts.justAnotherHand(shadows: [
                         const BoxShadow(
                             color: Colors.black,
@@ -80,8 +97,8 @@ class _TruthOrDareScreenState extends State<TruthOrDareScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Center(
-                  child: Text('Si Juan tiene 5 manzanas, Bryan le roba 3 manzanas a Juan¿De que color es Bryan?',
-                    style: GoogleFonts.rambla(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 35),
+                  child: Text(currentChallenge,
+                    style: GoogleFonts.rambla(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
                   ),
                 ),
               ),
@@ -104,7 +121,10 @@ class _TruthOrDareScreenState extends State<TruthOrDareScreen> {
                           color: colorOne,
                           borderRadius: BorderRadius.circular(15)
                       ),
-                      child: IconButton(onPressed: (){}, icon: const Icon(Icons.close, color: Colors.white, size: 50,))
+                      child: IconButton(onPressed: (){
+                        snackbar(context, 'Que lástima...');
+                        nextChallenge();
+                      }, icon: const Icon(Icons.close, color: Colors.white, size: 50,))
                   ),
                   const SizedBox(
                     height: 3,
@@ -124,7 +144,10 @@ class _TruthOrDareScreenState extends State<TruthOrDareScreen> {
                           color: colorOne,
                           borderRadius: BorderRadius.circular(15)
                       ),
-                      child: IconButton(onPressed: (){}, icon: const Icon(Icons.check, color: Colors.white, size: 50,)
+                      child: IconButton(onPressed: (){
+                        snackbar(context, '¡Genial!');
+                        nextChallenge();
+                      }, icon: const Icon(Icons.check, color: Colors.white, size: 50,)
                       )
                   ),
                   const SizedBox(
@@ -134,7 +157,10 @@ class _TruthOrDareScreenState extends State<TruthOrDareScreen> {
                 ],
               )
             ],
-          )
+          ),
+          const SizedBox(
+            height: 5,
+          ),
         ],
       ),
     );

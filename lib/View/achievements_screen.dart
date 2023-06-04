@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parchelapp/Controller/user_controller.dart';
 import 'package:parchelapp/View/Widgets/drawer_menu.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import '../Models/user_model.dart';
 import 'Styles/app_colors.dart';
 
 class AchievementsScreen extends StatefulWidget {
@@ -12,6 +14,15 @@ class AchievementsScreen extends StatefulWidget {
 }
 
 class _AchievementsScreenState extends State<AchievementsScreen> {
+  List<User> usersList = UserController.userList;
+  int userIndex = UserController.userIndex;
+  String yield1 = '';
+  String yield2 = '';
+  String yield3 = '';
+  String time1 = '';
+  String time2 = '';
+  String time3 = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +36,15 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
   }
 
   achievementsBody() {
+    yield1 = (double.parse(usersList[userIndex].thisWeekYield) * 100).toString();
+    yield2 = (double.parse(usersList[userIndex].lWeekYield) * 100).toString();
+    yield3 = (double.parse(usersList[userIndex].monthYield) * 100).toString();
+    time1 = (double.parse(usersList[userIndex].thisWeekTime) * 100).toString();
+    time2 = (double.parse(usersList[userIndex].weekTime) * 100).toString();
+    time3 = (double.parse(usersList[userIndex].monthTime) * 100).toString();
+
+
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(25.0),
@@ -66,24 +86,24 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
             const SizedBox(
               height: 10,
             ),
-            const Row(
+            Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Text('Esta semana',
-                    style: TextStyle(color: Colors.grey, fontSize: 17)),
-                SizedBox(
+                    style: GoogleFonts.rambla(color: Colors.greenAccent, fontSize: 17)),
+                const SizedBox(
                   width: 15,
                 ),
                 Text('Última semana',
-                    style: TextStyle(color: Colors.grey, fontSize: 17)),
-                SizedBox(
+                    style: GoogleFonts.rambla(color: Colors.greenAccent, fontSize: 17)),
+                const SizedBox(
                   width: 22,
                 ),
                 Text('Último mes',
-                    style: TextStyle(color: Colors.grey, fontSize: 17)),
+                    style: GoogleFonts.rambla(color: Colors.greenAccent, fontSize: 18)),
               ],
             ),
             const SizedBox(
@@ -99,51 +119,51 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
                   padding: const EdgeInsets.all(6.0),
                   child: CircularPercentIndicator(
                     radius: 45,
-                    lineWidth: 5,
+                    lineWidth: 7,
                     progressColor: Colors.greenAccent,
-                    center: const Text(
-                      '64%',
-                      style: TextStyle(color: Colors.greenAccent, fontSize: 18),
+                    center: Text(
+                      '$yield1%',
+                      style: GoogleFonts.rambla(color: Colors.greenAccent, fontSize: 18),
                     ),
                     animation: true,
                     circularStrokeCap: CircularStrokeCap.round,
-                    percent: 0.64,
+                    percent: double.parse(usersList[userIndex].thisWeekYield),
                   ),
                 ),
                 const SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: CircularPercentIndicator(
                     radius: 45,
-                    lineWidth: 5,
+                    lineWidth: 7,
                     progressColor: Colors.red,
-                    center: const Text(
-                      '40%',
-                      style: TextStyle(color: Colors.red, fontSize: 18),
+                    center: Text(
+                      '$yield2%',
+                      style: GoogleFonts.rambla(color: Colors.red, fontSize: 18),
                     ),
                     animation: true,
                     circularStrokeCap: CircularStrokeCap.round,
-                    percent: 0.4,
+                    percent: double.parse(usersList[userIndex].lWeekYield),
                   ),
                 ),
                 const SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: CircularPercentIndicator(
                     radius: 45,
-                    lineWidth: 5,
+                    lineWidth: 7,
                     progressColor: Colors.purple,
-                    center: const Text(
-                      '90%',
-                      style: TextStyle(color: Colors.purple, fontSize: 18),
+                    center: Text(
+                      '$yield3%',
+                      style: GoogleFonts.rambla(color: Colors.purple, fontSize: 18),
                     ),
                     animation: true,
                     circularStrokeCap: CircularStrokeCap.round,
-                    percent: 0.9,
+                    percent: double.parse(usersList[userIndex].monthYield),
                   ),
                 ),
               ],
@@ -171,24 +191,24 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
             const SizedBox(
               height: 10,
             ),
-            const Row(
+            Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Text('Esta semana',
-                    style: TextStyle(color: Colors.grey, fontSize: 17)),
-                SizedBox(
+                    style: GoogleFonts.rambla(color: Colors.greenAccent, fontSize: 17)),
+                const SizedBox(
                   width: 15,
                 ),
                 Text('Última semana',
-                    style: TextStyle(color: Colors.grey, fontSize: 17)),
-                SizedBox(
+                    style: GoogleFonts.rambla(color: Colors.greenAccent, fontSize: 17)),
+                const SizedBox(
                   width: 20,
                 ),
                 Text('Último mes',
-                    style: TextStyle(color: Colors.grey, fontSize: 17)),
+                    style: GoogleFonts.rambla(color: Colors.greenAccent, fontSize: 17)),
               ],
             ),
             const SizedBox(
@@ -198,57 +218,57 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
-                  width: 15,
+                  width: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: CircularPercentIndicator(
                     radius: 45,
-                    lineWidth: 5,
+                    lineWidth: 7,
                     progressColor: Colors.greenAccent,
-                    center: const Text(
-                      '64%',
-                      style: TextStyle(color: Colors.greenAccent, fontSize: 18),
+                    center: Text(
+                      '$time1%',
+                      style: GoogleFonts.rambla(color: Colors.greenAccent, fontSize: 18),
                     ),
                     animation: true,
                     circularStrokeCap: CircularStrokeCap.round,
-                    percent: 0.64,
+                    percent: double.parse(usersList[userIndex].thisWeekTime),
                   ),
                 ),
                 const SizedBox(
-                  width: 18,
+                  width: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: CircularPercentIndicator(
                     radius: 45,
-                    lineWidth: 5,
+                    lineWidth: 7,
                     progressColor: Colors.red,
-                    center: const Text(
-                      '40%',
-                      style: TextStyle(color: Colors.red, fontSize: 18),
+                    center: Text(
+                      '$time2%',
+                      style: GoogleFonts.rambla(color: Colors.red, fontSize: 18),
                     ),
                     animation: true,
                     circularStrokeCap: CircularStrokeCap.round,
-                    percent: 0.4,
+                    percent: double.parse(usersList[userIndex].weekTime),
                   ),
                 ),
                 const SizedBox(
-                  width: 18,
+                  width: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: CircularPercentIndicator(
                     radius: 45,
-                    lineWidth: 5,
+                    lineWidth: 7,
                     progressColor: Colors.purple,
-                    center: const Text(
-                      '90%',
-                      style: TextStyle(color: Colors.purple, fontSize: 18),
+                    center: Text(
+                      '$time3%',
+                      style: GoogleFonts.rambla(color: Colors.purple, fontSize: 18),
                     ),
                     animation: true,
                     circularStrokeCap: CircularStrokeCap.round,
-                    percent: 0.9,
+                    percent: double.parse(usersList[userIndex].monthTime),
                   ),
                 ),
               ],

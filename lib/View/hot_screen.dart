@@ -1,24 +1,23 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:parchelapp/Controller/riddle_controller.dart';
+import 'package:parchelapp/Controller/challenge_controller.dart';
 import 'package:parchelapp/View/Styles/app_colors.dart';
 import 'package:parchelapp/View/Widgets/drawer_menu.dart';
 import 'Widgets/snack_bar.dart';
 
-class RiddleScreen extends StatefulWidget {
-  const RiddleScreen({Key? key}) : super(key: key);
+class HotScreen extends StatefulWidget {
+  const HotScreen({Key? key}) : super(key: key);
   @override
-  State<RiddleScreen> createState() => _RiddleScreenState();
+  State<HotScreen> createState() => _HotScreenState();
 }
 
-class _RiddleScreenState extends State<RiddleScreen> {
-  late String currentRiddle;
-  late String currentAnswer;
+class _HotScreenState extends State<HotScreen> {
+  late String currentChallenge;
 
   @override
   void initState() {
-    nextRiddle();
+    nextChallenge();
     super.initState();
   }
 
@@ -31,19 +30,18 @@ class _RiddleScreenState extends State<RiddleScreen> {
         iconTheme: const IconThemeData(color: colorOne),
       ),
       drawer: drawerMenu(context),
-      body: _riddleBody(),
+      body: _familyBody(),
     );
   }
 
-  void nextRiddle(){
-    int index = Random().nextInt(RiddleController.riddleList.length);
+  void nextChallenge(){
+    int index = Random().nextInt(ChallengeController.hotList.length);
     setState(() {
-      currentRiddle = RiddleController.riddleList[index].content;
-      currentAnswer = RiddleController.riddleList[index].answer;
+      currentChallenge = ChallengeController.hotList[index].content;
     });
   }
 
-  _riddleBody() {
+  _familyBody() {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Column(
@@ -52,7 +50,7 @@ class _RiddleScreenState extends State<RiddleScreen> {
             children: [
               Padding(
                 padding:
-                const EdgeInsets.symmetric(vertical: 15.0, horizontal: 40),
+                const EdgeInsets.symmetric(vertical: 25.0, horizontal: 40),
                 child: Container(
                   height: 110,
                   decoration: const BoxDecoration(
@@ -72,7 +70,7 @@ class _RiddleScreenState extends State<RiddleScreen> {
                 children: [
                   Center(
                     child: Text(
-                      '¡Adivinanzas!',
+                      '¡Picante!',
                       style: GoogleFonts.justAnotherHand(shadows: [
                         const BoxShadow(
                             color: Colors.black,
@@ -86,12 +84,12 @@ class _RiddleScreenState extends State<RiddleScreen> {
             ],
           ),
           const SizedBox(
-            height: 5,
+            height: 15,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 40),
             child: Container(
-              height: 380,
+              height: 400,
               decoration: const BoxDecoration(
                   color: Colors.transparent,
                   image: DecorationImage(
@@ -99,15 +97,15 @@ class _RiddleScreenState extends State<RiddleScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Center(
-                  child: Text(currentRiddle,
-                  style: GoogleFonts.rambla(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
+                  child: Text(currentChallenge,
+                    style: GoogleFonts.rambla(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
                   ),
                 ),
               ),
-              ),
             ),
+          ),
           const SizedBox(
-            height: 5,
+            height: 20,
           ),
           Row(
             children: [
@@ -124,8 +122,8 @@ class _RiddleScreenState extends State<RiddleScreen> {
                           borderRadius: BorderRadius.circular(15)
                       ),
                       child: IconButton(onPressed: (){
-                        nextRiddle();
-                        snackbar(context, '¡Que lástima... todos beben 1 shot!');
+                        snackbar(context, 'Que lástima...');
+                        nextChallenge();
                       }, icon: const Icon(Icons.close, color: Colors.white, size: 50,))
                   ),
                   const SizedBox(
@@ -140,15 +138,15 @@ class _RiddleScreenState extends State<RiddleScreen> {
               Column(
                 children: [
                   Container(
-                    height: 60,
-                    width: 80,
-                    decoration: BoxDecoration(
-                      color: colorOne,
-                      borderRadius: BorderRadius.circular(15)
-                    ),
+                      height: 60,
+                      width: 80,
+                      decoration: BoxDecoration(
+                          color: colorOne,
+                          borderRadius: BorderRadius.circular(15)
+                      ),
                       child: IconButton(onPressed: (){
-                        nextRiddle();
                         snackbar(context, '¡Genial!');
+                        nextChallenge();
                       }, icon: const Icon(Icons.check, color: Colors.white, size: 50,)
                       )
                   ),
@@ -163,26 +161,6 @@ class _RiddleScreenState extends State<RiddleScreen> {
           const SizedBox(
             height: 5,
           ),
-          Column(
-            children: [
-              Container(
-                  height: 60,
-                  width: 80,
-                  decoration: BoxDecoration(
-                      color: colorOne,
-                      borderRadius: BorderRadius.circular(15)
-                  ),
-                  child: IconButton(onPressed: (){
-                    snackbar(context, 'Respuesta: $currentAnswer');
-                  }, icon: const Icon(Icons.question_mark, color: Colors.white, size: 50,)
-                  )
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              Text('Ver respuesta', style: GoogleFonts.rambla(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),)
-            ],
-          )
         ],
       ),
     );

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parchelapp/Controller/user_controller.dart';
 import 'package:parchelapp/View/Login_Screen.dart';
-import 'package:parchelapp/View/friends_screen.dart';
+import 'package:parchelapp/View/friends_list_screen.dart';
+import 'package:parchelapp/View/how_to_play.dart';
 
+import '../../Models/user_model.dart';
 import '../Styles/app_colors.dart';
 import '../achievements_screen.dart';
 import '../level_screen.dart';
@@ -13,6 +16,9 @@ import '../settings_screen.dart';
 import '../store_screen.dart';
 
 Widget drawerMenu(BuildContext context){
+  List<User> userList = UserController.userList;
+  int userIndex = UserController.userIndex;
+
   return Drawer(
     width: 230,
     backgroundColor: colorThree,
@@ -33,13 +39,13 @@ Widget drawerMenu(BuildContext context){
                   child: CircleAvatar(maxRadius: 40,
                   backgroundImage: AssetImage("assets/icon.png"),)),
               SizedBox(
-                height: 10,
+                height: 8,
               ),
               ],
           ),
         ),
         Center(
-            child:  Text('Nombre...',
+            child:  Text(userList[userIndex].name,
                 style: GoogleFonts.rambla(
                     fontWeight: FontWeight.bold,
                     color: Colors.red,
@@ -48,13 +54,13 @@ Widget drawerMenu(BuildContext context){
           height: 1,
         ),
         Center(
-            child:  Text('@nombre',
+            child:  Text('@${userList[userIndex].username}',
                 style: GoogleFonts.rambla(
                     color: Colors.grey,
                     fontSize: 14
                 ))),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
         ListTile(
           iconColor: Colors.grey,
@@ -156,7 +162,7 @@ Widget drawerMenu(BuildContext context){
                     pageBuilder: (context, animation, _) {
                       return FadeTransition(
                         opacity: animation,
-                        child: const FriendsScreen(),
+                        child: const FriendsListScreen(),
                       );
                     }));
 
@@ -226,6 +232,34 @@ Widget drawerMenu(BuildContext context){
         ),
         ListTile(
           iconColor: Colors.grey,
+          title: Text('¿Cómo Jugar?', style: GoogleFonts.rambla(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+              fontSize: 16)),
+          leading: const Icon(Icons.shopping_bag),
+          trailing: const Icon(Icons.arrow_forward_ios_outlined),
+          textColor: Colors.white,
+          onTap: () {
+            Navigator.push(
+                context,
+                PageRouteBuilder(
+                    transitionDuration:
+                    const Duration(milliseconds: 500),
+                    reverseTransitionDuration:
+                    const Duration(milliseconds: 300),
+                    pageBuilder: (context, animation, _) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: const HowToPlayScreen(),
+                      );
+                    }));
+          },
+        ),
+        const SizedBox(
+          height: 3,
+        ),
+        ListTile(
+          iconColor: Colors.grey,
           title: Text('Califícanos', style: GoogleFonts.rambla(
               fontWeight: FontWeight.bold,
               fontSize: 16)),
@@ -249,7 +283,7 @@ Widget drawerMenu(BuildContext context){
           },
         ),
         const SizedBox(
-          height: 80,
+          height: 3,
         ),
         ListTile(
           iconColor: Colors.grey,
@@ -287,6 +321,7 @@ Widget drawerMenu(BuildContext context){
           leading: const Icon(Icons.logout_outlined),
           textColor: Colors.white,
           onTap: () {
+            UserController.userIndex = 0;
             Navigator.pushAndRemoveUntil(
                 context,
                 PageRouteBuilder(

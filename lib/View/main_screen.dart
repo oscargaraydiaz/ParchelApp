@@ -15,6 +15,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
           Center(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 25.0, horizontal: 40),
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40),
               child: Container(
                 height: 160,
                 decoration: const BoxDecoration(
@@ -53,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           const SizedBox(
-            height: 60,
+            height: 50,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -67,7 +68,7 @@ class _MainScreenState extends State<MainScreen> {
                     image: AssetImage("assets/little_devil.png"),
                   )),
               const SizedBox(
-                width: 40,
+                width: 20,
               ),
               ElevatedButton(
                 onPressed: () {
@@ -97,7 +98,7 @@ class _MainScreenState extends State<MainScreen> {
             ],
           ),
           const SizedBox(
-            height: 60,
+            height: 50,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -141,7 +142,7 @@ class _MainScreenState extends State<MainScreen> {
             ],
           ),
           const SizedBox(
-            height: 60,
+            height: 50,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,

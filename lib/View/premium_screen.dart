@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:parchelapp/View/Styles/app_colors.dart';
 import 'package:parchelapp/View/Widgets/drawer_menu.dart';
 
+import 'Widgets/snack_Bar.dart';
+
 class PremiumScreen extends StatefulWidget {
   const PremiumScreen({Key? key}) : super(key: key);
 
@@ -132,7 +134,9 @@ class _PremiumScreenState extends State<PremiumScreen> {
               width: 40,
             ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  snackbar(context, '¡Ups! Sigue disfrutando tu prueba gratis');
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: colorFour,
                   shadowColor: Colors.red,
@@ -162,7 +166,9 @@ class _PremiumScreenState extends State<PremiumScreen> {
               width: 28,
             ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  snackbar(context, '¡Ups! Sigue disfrutando tu prueba gratis');
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: colorFour,
                   shadowColor: Colors.red,
@@ -176,7 +182,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
           ],
         ),
         const SizedBox(
-          height: 200,
+          height: 160,
         ),
         Center(
           child: Text(

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parchelapp/View/friends_screen.dart';
+import 'package:parchelapp/View/hot_screen.dart';
 import 'Styles/app_colors.dart';
 import 'Styles/button_style.dart';
 import 'Widgets/drawer_menu.dart';
+import 'family_screen.dart';
 
 class FunTypeToDScreen extends StatefulWidget {
   const  FunTypeToDScreen({Key? key}) : super(key: key);
@@ -67,7 +70,21 @@ class _FunTypeToDScreenState extends State< FunTypeToDScreen> {
                 width: 30,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          transitionDuration:
+                          const Duration(milliseconds: 500),
+                          reverseTransitionDuration:
+                          const Duration(milliseconds: 300),
+                          pageBuilder: (context, animation, _) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: const FamilyScreen(),
+                            );
+                          }));
+                },
                 style: buttonMainStyle(),
                 child: Text(
                   'Familiar',
@@ -86,7 +103,21 @@ class _FunTypeToDScreenState extends State< FunTypeToDScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          transitionDuration:
+                          const Duration(milliseconds: 500),
+                          reverseTransitionDuration:
+                          const Duration(milliseconds: 300),
+                          pageBuilder: (context, animation, _) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: const FriendsScreen(),
+                            );
+                          }));
+                },
                 style: buttonMainStyle(),
                 child: Text(
                   'Amigos',
@@ -127,10 +158,24 @@ class _FunTypeToDScreenState extends State< FunTypeToDScreen> {
                 width: 50,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          transitionDuration:
+                          const Duration(milliseconds: 500),
+                          reverseTransitionDuration:
+                          const Duration(milliseconds: 300),
+                          pageBuilder: (context, animation, _) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: const HotScreen(),
+                            );
+                          }));
+                },
                 style: buttonMainStyle(),
                 child: Text(
-                  'Pareja',
+                  'Picante',
                   style: GoogleFonts.rambla(shadows: [
                     const BoxShadow(
                         color: Colors.black, spreadRadius: 0.0, blurRadius: 10)

@@ -1,18 +1,25 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:parchelapp/Controller/user_controller.dart';
 import 'package:parchelapp/View/Styles/app_colors.dart';
 import 'package:parchelapp/View/splash_screen.dart';
+import 'Controller/badges_controller.dart';
+import 'Controller/challenge_controller.dart';
+import 'Controller/mystery_controller.dart';
+import 'Controller/riddle_controller.dart';
 
-
-void main() {
+Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  try {
-    Firebase.initializeApp;
-    runApp(const MyApp());
-  }on FirebaseException catch(e){
-    print("Mensaje ${e.message}");
-    print("Código ${e.code}");
-  }
+  await Firebase.initializeApp().then((value){
+    ChallengeController.getHotChallenge();
+    ChallengeController.getFriendsChallenge();
+    ChallengeController.getFamilyChallenge();
+    RiddleController.getRiddle();
+    MysteryController.getMystery();
+    BadgesController.getBadges();
+    UserController.getUsers().then((value) => runApp(const MyApp()));
+  });
+
 }
 
 class MyApp extends StatelessWidget {

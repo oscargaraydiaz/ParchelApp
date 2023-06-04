@@ -11,6 +11,7 @@ class StoreScreen extends StatefulWidget {
 }
 
 class _StoreScreenState extends State<StoreScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +26,7 @@ class _StoreScreenState extends State<StoreScreen> {
   }
 
   _storeBody(){
+    int count = 0;
     return SingleChildScrollView(
       child: Column(children: [
         const SizedBox(
@@ -54,13 +56,20 @@ class _StoreScreenState extends State<StoreScreen> {
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: count == 0? 1:3,
             childAspectRatio: 1.2,
           ),
-          itemCount: 9,
+          itemCount: count == 0? 1:3,
           itemBuilder: (BuildContext context, int index) {
-            return GridTile(
+            return count == 0? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Text('¡Ups! Aún no tenemos artículos en venta', style: GoogleFonts.rambla(
+                    color: colorOne, fontSize: 25, fontWeight: FontWeight.bold
+                ),),
+              ),
+            ): GridTile(
               child: Container(
                 color: colorThree,
                 child: Column(

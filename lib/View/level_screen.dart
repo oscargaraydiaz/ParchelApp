@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parchelapp/Controller/badges_controller.dart';
+import 'package:parchelapp/Controller/user_controller.dart';
 import 'package:parchelapp/View/Widgets/drawer_menu.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
+import '../Models/user_model.dart';
 import 'Styles/app_colors.dart';
+
 
 class LevelScreen extends StatefulWidget {
   const LevelScreen({Key? key}) : super(key: key);
@@ -13,6 +16,9 @@ class LevelScreen extends StatefulWidget {
 }
 
 class _LevelScreenState extends State<LevelScreen> {
+  List<User> usersList = UserController.userList;
+  int userIndex = UserController.userIndex;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +57,7 @@ class _LevelScreenState extends State<LevelScreen> {
         Row(
           children: [
             const SizedBox(
-              width: 60,
+              width: 55,
             ),
             Text(
               'Nivel de Parche',
@@ -64,7 +70,7 @@ class _LevelScreenState extends State<LevelScreen> {
             LinearPercentIndicator(
               width: 180.0,
               lineHeight: 15,
-              percent: 0.1,
+              percent: double.parse(usersList[userIndex].level),
               backgroundColor: Colors.white,
               progressColor: colorFour,
               barRadius: const Radius.circular(25),
@@ -85,36 +91,41 @@ class _LevelScreenState extends State<LevelScreen> {
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: (usersList[userIndex].level == '0.0')? 1:3,
             childAspectRatio: 1.2,
           ),
-          itemCount: 9,
+          itemCount: usersList[userIndex].level == '0.0' ? 1 : BadgesController.badgesList.length,
           itemBuilder: (BuildContext context, int index) {
-            return GridTile(
-              child: Container(
-                color: colorThree,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.recommend,
-                      size: 50,
-                      color: Colors.grey,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Título ${index + 1}',
-                      style: GoogleFonts.rambla(
-                          color: colorFour,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
-                    ),
-                  ],
+            if(usersList[userIndex].level == '0.0'){
+              return  Center(
+                child: Text('¡Vaya! No has desbloqueado insignias', style: GoogleFonts.rambla(
+                    color: colorOne, fontSize: 25, fontWeight: FontWeight.bold
+                ),),
+              );
+            }else{
+              return GridTile(
+                child: Container(
+                  color: colorThree,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image(image: NetworkImage(BadgesController.badgesList[index].logo)),
+                      const SizedBox(height: 8),
+                      Text(
+                        BadgesController.badgesList[index].title,
+                        style: GoogleFonts.rambla(
+                            color: colorFour,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
+              );
+            }
+
           },
         ),
       ]),
