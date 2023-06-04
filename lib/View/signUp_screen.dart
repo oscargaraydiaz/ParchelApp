@@ -198,6 +198,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 color: Colors.white, style: BorderStyle.solid)),
                         labelText: 'Fecha de Nacimiento',
                         hintText: 'aaaa/mm/dd',
+                        hintStyle: GoogleFonts.rambla(color: Colors.white),
                         labelStyle: GoogleFonts.rambla(
                             color: Colors.red, fontSize: 20)),
                   ),
